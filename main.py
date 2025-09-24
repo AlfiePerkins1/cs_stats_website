@@ -29,7 +29,7 @@ def _to_float(x):
     except Exception:
         return None
 
-# --- Input form ---
+# Input form
 with st.form("lookup_form"):
     steamID = st.text_input("SteamID64", "76561198259409483")
     submitted = st.form_submit_button("Fetch stats")
@@ -37,7 +37,7 @@ with st.form("lookup_form"):
 if not submitted:
     st.stop()
 
-# --- Fetch data ---
+# Fetch data
 try:
     ranks_dict, rating_dict, stats_dict, leetify_profile = get_leetify_sections(steamID)
 except LeetifyNotFound:
@@ -63,13 +63,13 @@ try:
         }
 
 
-    # Build a clean dict you can pass to st.metric
+    # Build a clean dict can pass to st.metric
     faceit_life = extract_faceit_lifetime(faceit_stats)
 except Exception as e:
     faceit_player, faceit_stats = None, None
     st.warning(f"Faceit data not available: {e}")
 
-# --- Layout ---
+#Layout
 col1, col2, col3 = st.columns(3)
 
 with col1:
